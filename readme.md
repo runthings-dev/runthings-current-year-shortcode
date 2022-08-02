@@ -22,7 +22,7 @@ Set "from" to apply a range, after "from" year has passed.
 # Download
 Download and contribute issues at:
 
-https://github.com/rtpHarry/EmptyMediaTitle-Wordpress/
+https://github.com/rtpHarry/CurrentYearShortcode-WordPress
 
 # Changelog
 1.1.0 - 19th February 2022
