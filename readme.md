@@ -1,4 +1,5 @@
 # Introduction
+
 This is a plugin which adds a simple shortcode to display a dynamic
 year, for use in copyright statements.
 
@@ -6,6 +7,7 @@ Its most basic usage is [year], for the current year, but it will expand
 into a date range if the 'from' year is before the current year.
 
 # Usage
+
 Install the plugin and activate it.
 
 Set "from" to apply a range, after "from" year has passed.
@@ -20,6 +22,7 @@ Set "from" to apply a range, after "from" year has passed.
 [year from="1983"] = 1983-2023
 
 # Download
+
 Download and contribute issues at:
 
 https://github.com/rtpHarry/EmptyMediaTitle-Wordpress/
@@ -42,10 +45,12 @@ https://github.com/rtpHarry/EmptyMediaTitle-Wordpress/
 - Internal release
 
 # Licence
-This plugin is licenced under GPL 3, and is free to use on personal and 
+
+This plugin is licenced under GPL 3, and is free to use on personal and
 commercial projects.
 
 # Author
-Built by Matthew Harris of runthings.dev, copyright 2022.
+
+Built by Matthew Harris of runthings.dev, copyright 2022-2023.
 
 https://runthings.dev/
