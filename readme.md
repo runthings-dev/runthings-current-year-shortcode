@@ -10,14 +10,14 @@ Install the plugin and activate it.
 
 Set "from" to apply a range, after "from" year has passed.
 
-// assuming current year is 2022
-[year] = 2022
+// assuming current year is 2023
+[year] = 2023
 
-// assuming current year is 2022
-[year from="2022"] = 2022
+// assuming current year is 2023
+[year from="2023"] = 2023
 
-// assuming current year is 2022
-[year from="1983"] = 1983-2022
+// assuming current year is 2023
+[year from="1983"] = 1983-2023
 
 # Download
 Download and contribute issues at:
