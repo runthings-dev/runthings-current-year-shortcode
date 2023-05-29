@@ -25,14 +25,21 @@ Download and contribute issues at:
 https://github.com/rtpHarry/EmptyMediaTitle-Wordpress/
 
 # Changelog
+
+1.2.0 - 29th May 2023
+
+- Update year examples to 2023
+
 1.1.0 - 19th February 2022
-  - Added licence
-  - Updated plugin meta
-  - Added readme file
-  - Initial public release
+
+- Added licence
+- Updated plugin meta
+- Added readme file
+- Initial public release
 
 1.0.0 - 25th August 2021
-  - Internal release
+
+- Internal release
 
 # Licence
 This plugin is licenced under GPL 3, and is free to use on personal and 
