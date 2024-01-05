@@ -2,14 +2,14 @@
 /*
 Plugin Name: Current Year Shortcode
 Plugin URI: https://runthings.dev
-Description: Add a shortcode for displaying the current year as a range, usage: [year from="2023"]
+Description: Add a shortcode for displaying the current year as a range, usage: [year from="2024"]
 Version: 1.2.0
 Author: Matthew Harris, runthings.dev
 Author URI: https://runthings.dev/
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Copyright 2022-2023 Matthew Harris
+Copyright 2022-2024 Matthew Harris
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as
@@ -35,14 +35,14 @@ if (!defined('WPINC')) {
  * Set "from" to apply a range, after "from" year has passed.
  *
  * @example
- * // assuming current year is 2023
- * [year] = 2023
+ * // assuming current year is 2024
+ * [year] = 2024
  * @example
- * // assuming current year is 2023
- * [year from="2022"] = 2023
+ * // assuming current year is 2024
+ * [year from="2024"] = 2024
  * @example
- * // assuming current year is 2023
- * [year from="1983"] = 1983-2023
+ * // assuming current year is 2024
+ * [year from="1983"] = 1983-2024
  *
  * @return {string} the current year or year range specified
  */

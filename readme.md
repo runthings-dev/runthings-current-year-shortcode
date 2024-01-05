@@ -12,14 +12,14 @@ Install the plugin and activate it.
 
 Set "from" to apply a range, after "from" year has passed.
 
-// assuming current year is 2023
-[year] = 2023
+// assuming current year is 2024
+[year] = 2024
 
-// assuming current year is 2023
-[year from="2023"] = 2023
+// assuming current year is 2024
+[year from="2024"] = 2024
 
-// assuming current year is 2023
-[year from="1983"] = 1983-2023
+// assuming current year is 2024
+[year from="1983"] = 1983-2024
 
 # Download
 
@@ -29,18 +29,22 @@ https://github.com/rtpHarry/CurrentYearShortcode-WordPress
 
 # Changelog
 
-1.2.0 - 29th May 2023
+1.3.0 - 5th Jan 2024
+
+- Update year examples to 2024
+
+  1.2.0 - 29th May 2023
 
 - Update year examples to 2023
 
-1.1.0 - 19th February 2022
+  1.1.0 - 19th February 2022
 
 - Added licence
 - Updated plugin meta
 - Added readme file
 - Initial public release
 
-1.0.0 - 25th August 2021
+  1.0.0 - 25th August 2021
 
 - Internal release
 
@@ -51,6 +55,6 @@ commercial projects.
 
 # Author
 
-Built by Matthew Harris of runthings.dev, copyright 2022-2023.
+Built by Matthew Harris of runthings.dev, copyright 2022-2024.
 
 https://runthings.dev/
