@@ -34,31 +34,32 @@ if (!defined('WPINC')) {
 class CurrentYearShortcode
 {
     /**
+     * The default shortcode tag
+     * 
+     * @var string
+     * @readonly
+     */
+    private $default_tag = 'year';
+
+    /**
      * The actual shortcode tag that is registered
      * 
      * @var string
      */
-    private $shortcode_tag = 'year';
-
-    /**
-     * Whether we're using the fallback shortcode due to a conflict
-     *
-     * @var bool
-     */
-    private $using_fallback = false;
+    private $shortcode_tag;
 
     /**
      * Initialize the plugin and register hooks
      */
     public function __construct()
     {
-        add_shortcode($this->shortcode_tag, array($this, 'render'));
+        $this->shortcode_tag = $this->default_tag;
 
         // Register shortcode on init with low priority (20)
         // This ensures we register after most other plugins, allowing us to check for conflicts
         add_action('init', array($this, 'register_shortcode'), 20);
 
-        // Add notice to plugins page if there's a conflict
+        // Add notice to plugins page showing active shortcode
         add_filter('plugin_row_meta', array($this, 'add_shortcode_notice'), 10, 2);
     }
 
@@ -66,22 +67,19 @@ class CurrentYearShortcode
      * Register our shortcode on init
      * 
      * If 'year' shortcode already exists, we'll use 'runthings_year' instead
-     * Running at a lower priority (higher number) lets us adapt to other plugins
+     * The shortcode tag can also be filtered using 'runthings_current_year_shortcode_tag'
      */
     public function register_shortcode()
     {
-        // Check if the 'year' shortcode already exists
-        if (shortcode_exists('year')) {
-            $this->shortcode_tag = 'runthings_year';
-            $this->using_fallback = true;
-        }
+        $tag = shortcode_exists($this->default_tag) ? 'runthings_year' : $this->default_tag;
 
-        // Register our shortcode with the appropriate tag
+        $this->shortcode_tag = apply_filters('runthings_current_year_shortcode_tag', $tag);
+
         add_shortcode($this->shortcode_tag, array($this, 'render'));
     }
 
     /**
-     * Add a notice to the plugin's row in the plugins list if we're using the fallback shortcode
+     * Add a notice to the plugin's row in the plugins list showing the active shortcode
      *
      * @param array  $plugin_meta An array of the plugin's metadata
      * @param string $plugin_file Path to the plugin file relative to the plugins directory
@@ -89,9 +87,13 @@ class CurrentYearShortcode
      */
     public function add_shortcode_notice($plugin_meta, $plugin_file)
     {
-        if (plugin_basename(__FILE__) === $plugin_file && $this->using_fallback) {
+        if (plugin_basename(__FILE__) === $plugin_file) {
+            $is_custom = $this->shortcode_tag !== $this->default_tag;
+            $style = $is_custom ? 'color: #f56e28; font-weight: bold;' : 'color: #2271b1;';
+
             $notice = sprintf(
-                '<span style="color: #f56e28; font-weight: bold;">%s <code>[%s]</code></span>',
+                '<span style="%s">%s <code>[%s]</code></span>',
+                $style,
                 __('Active shortcode:', 'runthings-current-year-shortcode'),
                 $this->shortcode_tag
             );
