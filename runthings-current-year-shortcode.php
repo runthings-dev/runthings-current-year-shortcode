@@ -45,7 +45,8 @@ class CurrentYearShortcode
     /**
      * Shortcode to display current year in a copyright statement.
      *
-     * Set "from" to apply a range, after "from" year has passed.
+     * Set "from" to apply a range when "from" year has passed.
+     * Set "mode" to "short" to abbreviate the end year when the century matches.
      *
      * @example
      * // assuming current year is 2025
@@ -56,15 +57,24 @@ class CurrentYearShortcode
      * @example
      * // assuming current year is 2025
      * [year from="1983"] = 1983-2025
+     * @example
+     * // assuming current year is 2025
+     * [year from="2020" mode="short"] = 2020-25
+     * @example
+     * // assuming current year is 2025
+     * [year from="1995" mode="short"] = 1995-2025
      *
      * @param array $atts Shortcode attributes
      * @return string The current year or year range specified
      */
     public function render($atts)
     {
+        $output = '';
+
         $atts = shortcode_atts(
             array(
                 'from' => null,
+                'mode' => 'long',
             ),
             $atts,
             'year'
@@ -72,12 +82,21 @@ class CurrentYearShortcode
 
         $year = current_time('Y');
         $from = $atts['from'];
+        $mode = strtolower($atts['mode']);
+
+        $output = $year;
 
         if ($from !== null && $from < $year) {
-            return "$from-$year";
+            $formatted_year = $year;
+
+            if ($mode === 'short' && substr($from, 0, 2) === substr($year, 0, 2)) {
+                $formatted_year = substr($year, 2);
+            }
+
+            $output = "$from-$formatted_year";
         }
 
-        return $year;
+        return $output;
     }
 }
 
