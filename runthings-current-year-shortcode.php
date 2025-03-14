@@ -2,7 +2,7 @@
 /*
 Plugin Name: Current Year Shortcode
 Plugin URI: https://runthings.dev
-Description: Add a shortcode for displaying the current year as a range, usage: [year from="2025"] or [runthings_year from="2025"] if there's a conflict
+Description: Add a shortcode for displaying the current year as a range, usage: [year from="2025"] or [runthings_year from="2025"] if there's a conflict.
 Version: 1.3.0
 Author: runthingsdev
 Author URI: https://runthings.dev/
@@ -41,13 +41,25 @@ class CurrentYearShortcode
     private $shortcode_tag = 'year';
 
     /**
+     * Whether we're using the fallback shortcode due to a conflict
+     *
+     * @var bool
+     */
+    private $using_fallback = false;
+
+    /**
      * Initialize the plugin and register hooks
      */
     public function __construct()
     {
+        add_shortcode($this->shortcode_tag, array($this, 'render'));
+
         // Register shortcode on init with low priority (20)
         // This ensures we register after most other plugins, allowing us to check for conflicts
         add_action('init', array($this, 'register_shortcode'), 20);
+
+        // Add notice to plugins page if there's a conflict
+        add_filter('plugin_row_meta', array($this, 'add_shortcode_notice'), 10, 2);
     }
 
     /**
@@ -61,10 +73,32 @@ class CurrentYearShortcode
         // Check if the 'year' shortcode already exists
         if (shortcode_exists('year')) {
             $this->shortcode_tag = 'runthings_year';
+            $this->using_fallback = true;
         }
 
         // Register our shortcode with the appropriate tag
         add_shortcode($this->shortcode_tag, array($this, 'render'));
+    }
+
+    /**
+     * Add a notice to the plugin's row in the plugins list if we're using the fallback shortcode
+     *
+     * @param array  $plugin_meta An array of the plugin's metadata
+     * @param string $plugin_file Path to the plugin file relative to the plugins directory
+     * @return array
+     */
+    public function add_shortcode_notice($plugin_meta, $plugin_file)
+    {
+        if (plugin_basename(__FILE__) === $plugin_file && $this->using_fallback) {
+            $notice = sprintf(
+                '<span style="color: #f56e28; font-weight: bold;">%s <code>[%s]</code></span>',
+                __('Active shortcode:', 'runthings-current-year-shortcode'),
+                $this->shortcode_tag
+            );
+            $plugin_meta[] = $notice;
+        }
+
+        return $plugin_meta;
     }
 
     /**
