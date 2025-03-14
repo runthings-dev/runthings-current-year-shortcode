@@ -89,7 +89,7 @@ class CurrentYearShortcode
     {
         if (plugin_basename(__FILE__) === $plugin_file) {
             $is_custom = $this->shortcode_tag !== $this->default_tag;
-            $style = $is_custom ? 'color: #f56e28; font-weight: bold;' : 'color: #2271b1;';
+            $style = $is_custom ? 'color: #dba617; font-weight: bold;' : '';
 
             $notice = sprintf(
                 '<span style="%s">%s <code>[%s]</code></span>',
