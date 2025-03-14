@@ -70,10 +70,10 @@ class CurrentYearShortcode
             'year'
         );
 
-        $year = date('Y');
+        $year = current_time('Y');
         $from = $atts['from'];
 
-        if ($from != null && $from < $year) {
+        if ($from !== null && $from < $year) {
             return "$from-$year";
         }
 
