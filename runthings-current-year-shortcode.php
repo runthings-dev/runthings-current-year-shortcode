@@ -25,42 +25,61 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
+namespace RunthingsCurrentYearShortcode;
+
 if (!defined('WPINC')) {
     die;
 }
 
-/**
- * Shortcode to display current year in a copyright statement.
- *
- * Set "from" to apply a range, after "from" year has passed.
- *
- * @example
- * // assuming current year is 2024
- * [year] = 2024
- * @example
- * // assuming current year is 2024
- * [year from="2024"] = 2024
- * @example
- * // assuming current year is 2024
- * [year from="1983"] = 1983-2024
- *
- * @return {string} the current year or year range specified
- */
-function rtp_copyright_year($atts)
+class CurrentYearShortcode
 {
-    $atts = shortcode_atts(
-        array(
-            'from' => null,
-        ),
-        $atts,
-        'year'
-    );
-    $year = date('Y');
-    $from = $atts['from'];
-    if ($from != null && $from < $year) {
-        return "$from-$year";
+
+    /**
+     * Initialize the plugin and register hooks
+     */
+    public function __construct()
+    {
+        add_shortcode('year', array($this, 'render'));
     }
-    return $year;
+
+    /**
+     * Shortcode to display current year in a copyright statement.
+     *
+     * Set "from" to apply a range, after "from" year has passed.
+     *
+     * @example
+     * // assuming current year is 2024
+     * [year] = 2024
+     * @example
+     * // assuming current year is 2024
+     * [year from="2024"] = 2024
+     * @example
+     * // assuming current year is 2024
+     * [year from="1983"] = 1983-2024
+     *
+     * @param array $atts Shortcode attributes
+     * @return string The current year or year range specified
+     */
+    public function render($atts)
+    {
+        $atts = shortcode_atts(
+            array(
+                'from' => null,
+            ),
+            $atts,
+            'year'
+        );
+
+        $year = date('Y');
+        $from = $atts['from'];
+
+        if ($from != null && $from < $year) {
+            return "$from-$year";
+        }
+
+        return $year;
+    }
 }
-add_shortcode('year', 'rtp_copyright_year');
-// END shortcode to add current year feature
+
+// Initialize the plugin
+new CurrentYearShortcode();
