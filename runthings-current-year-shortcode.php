@@ -4,7 +4,7 @@ Plugin Name: Current Year Shortcode
 Plugin URI: https://runthings.dev
 Description: Add a shortcode for displaying the current year as a range, usage: [year from="2025"]
 Version: 1.3.0
-Author: Matthew Harris, runthings.dev
+Author: runthingsdev
 Author URI: https://runthings.dev/
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
