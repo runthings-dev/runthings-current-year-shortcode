@@ -2,7 +2,7 @@
 /*
 Plugin Name: Current Year Shortcode
 Plugin URI: https://runthings.dev
-Description: Add a shortcode for displaying the current year as a range, usage: [year from="2025"]
+Description: Add a shortcode for displaying the current year as a range, usage: [year from="2025"] or [runthings_year from="2025"] if there's a conflict
 Version: 1.3.0
 Author: runthingsdev
 Author URI: https://runthings.dev/
@@ -33,13 +33,38 @@ if (!defined('WPINC')) {
 
 class CurrentYearShortcode
 {
+    /**
+     * The actual shortcode tag that is registered
+     * 
+     * @var string
+     */
+    private $shortcode_tag = 'year';
 
     /**
      * Initialize the plugin and register hooks
      */
     public function __construct()
     {
-        add_shortcode('year', array($this, 'render'));
+        // Register shortcode on init with low priority (20)
+        // This ensures we register after most other plugins, allowing us to check for conflicts
+        add_action('init', array($this, 'register_shortcode'), 20);
+    }
+
+    /**
+     * Register our shortcode on init
+     * 
+     * If 'year' shortcode already exists, we'll use 'runthings_year' instead
+     * Running at a lower priority (higher number) lets us adapt to other plugins
+     */
+    public function register_shortcode()
+    {
+        // Check if the 'year' shortcode already exists
+        if (shortcode_exists('year')) {
+            $this->shortcode_tag = 'runthings_year';
+        }
+
+        // Register our shortcode with the appropriate tag
+        add_shortcode($this->shortcode_tag, array($this, 'render'));
     }
 
     /**
@@ -50,7 +75,7 @@ class CurrentYearShortcode
      *
      * @example
      * // assuming current year is 2025
-     * [year] = 2025
+     * [year] = 2025 (or [runthings_year] if 'year' is taken)
      * @example
      * // assuming current year is 2025
      * [year from="2025"] = 2025
