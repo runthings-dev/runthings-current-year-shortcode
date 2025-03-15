@@ -14,14 +14,13 @@ If `[year]` is used by another plugin, then it uses the fallback `[runthings_yea
 
 - Display current year with `[year]`
 - Create a dynamic year range with `[year from="2020"]`
-- Abbreviated year format with `[year from="2020" mode="short"]`, which shows "2020-25" (if current year is 2025)
+- Abbreviated year format with `[year from="2020" mode="short"]`, which shows "2020-25" (if the current year is 2025)
 - Automatic fallback shortcode `[runthings_year]` if another plugin already uses the 'year' shortcode
-- Filter to set your own shortcode
-- No settings page - just install and use!
+- Filter (`runthings_current_year_shortcode_tag`) to set your own shortcode
 
 ### Usage Examples
 
-Assuming current year is 2025:
+Assuming the current year is 2025:
 
 - `[year]` displays "2025"
 - `[year from="2025"]` displays "2025" (since it's the current year)
