@@ -126,7 +126,7 @@ class CurrentYearShortcode
         if (plugin_basename(__FILE__) === $plugin_file) {
             $plugin_meta[] = sprintf(
                 '<a href="#" onclick="return runthingsCYSOpenHelpTab();">%s</a>',
-                __('Usage Examples', 'runthings-current-year-shortcode')
+                esc_html__('Usage Examples', 'runthings-current-year-shortcode')
             );
         }
 
@@ -148,9 +148,9 @@ class CurrentYearShortcode
 
             $notice = sprintf(
                 '<span style="%s">%s <code>[%s]</code></span>',
-                $style,
-                __('Active shortcode:', 'runthings-current-year-shortcode'),
-                $this->shortcode_tag
+                esc_attr($style),
+                esc_html__('Active shortcode:', 'runthings-current-year-shortcode'),
+                esc_html($this->shortcode_tag)
             );
             $plugin_meta[] = $notice;
         }
@@ -169,7 +169,7 @@ class CurrentYearShortcode
 
         $screen->add_help_tab(array(
             'id'      => 'runthings-year-shortcode-help',
-            'title'   => __('Year Shortcode Usage', 'runthings-current-year-shortcode'),
+            'title'   => esc_html__('Year Shortcode Usage', 'runthings-current-year-shortcode'),
             'content' => $this->get_help_content(),
         ));
     }
@@ -184,32 +184,35 @@ class CurrentYearShortcode
                 white-space: nowrap;
             }
         </style>
-        <h3><?php _e('Current Year Shortcode Usage', 'runthings-current-year-shortcode'); ?></h3>
-        <p><?php printf(__('Active shortcode: <code>[%s]</code>', 'runthings-current-year-shortcode'), $this->shortcode_tag); ?></p>
+        <h3><?php esc_html_e('Current Year Shortcode Usage', 'runthings-current-year-shortcode'); ?></h3>
+        <p><?php printf(
+                esc_html__('Active shortcode: <code>[%s]</code>', 'runthings-current-year-shortcode'),
+                esc_html($this->shortcode_tag)
+            ); ?></p>
 
         <table class="widefat" style="max-width: 600px;">
             <thead>
                 <tr>
-                    <th><?php _e('Example', 'runthings-current-year-shortcode'); ?></th>
-                    <th><?php _e('Output', 'runthings-current-year-shortcode'); ?></th>
-                    <th><?php _e('Description', 'runthings-current-year-shortcode'); ?></th>
+                    <th><?php esc_html_e('Example', 'runthings-current-year-shortcode'); ?></th>
+                    <th><?php esc_html_e('Output', 'runthings-current-year-shortcode'); ?></th>
+                    <th><?php esc_html_e('Description', 'runthings-current-year-shortcode'); ?></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><code>[<?php echo $this->shortcode_tag; ?>]</code></td>
-                    <td class='runthings-nowrap'><?php echo $current_year; ?></td>
-                    <td><?php _e('Displays the current year', 'runthings-current-year-shortcode'); ?></td>
+                    <td><code>[<?php echo esc_html($this->shortcode_tag); ?>]</code></td>
+                    <td class='runthings-nowrap'><?php echo esc_html($current_year); ?></td>
+                    <td><?php esc_html_e('Displays the current year', 'runthings-current-year-shortcode'); ?></td>
                 </tr>
                 <tr>
-                    <td><code>[<?php echo $this->shortcode_tag; ?> from="2020"]</code></td>
-                    <td class='runthings-nowrap'>2020-<?php echo $current_year; ?></td>
-                    <td><?php _e('Year range from 2020 to current year', 'runthings-current-year-shortcode'); ?></td>
+                    <td><code>[<?php echo esc_html($this->shortcode_tag); ?> from="2020"]</code></td>
+                    <td class='runthings-nowrap'><?php echo esc_html("2020-{$current_year}"); ?></td>
+                    <td><?php esc_html_e('Year range from 2020 to current year', 'runthings-current-year-shortcode'); ?></td>
                 </tr>
                 <tr>
-                    <td><code>[<?php echo $this->shortcode_tag; ?> from="2020" mode="short"]</code></td>
-                    <td class='runthings-nowrap'>2020-<?php echo substr($current_year, 2); ?></td>
-                    <td><?php _e('Year range with shortened end year', 'runthings-current-year-shortcode'); ?></td>
+                    <td><code>[<?php echo esc_html($this->shortcode_tag); ?> from="2020" mode="short"]</code></td>
+                    <td class='runthings-nowrap'><?php echo esc_html('2020-' . substr($current_year, 2)); ?></td>
+                    <td><?php esc_html_e('Year range with shortened end year', 'runthings-current-year-shortcode'); ?></td>
                 </tr>
             </tbody>
         </table>
@@ -255,9 +258,9 @@ class CurrentYearShortcode
             'year'
         );
 
-        $year = current_time('Y');
-        $from = $atts['from'];
-        $mode = strtolower($atts['mode']);
+        $year = esc_html(current_time('Y'));
+        $from = $atts['from'] !== null ? esc_html($atts['from']) : null;
+        $mode = esc_html(strtolower($atts['mode']));
 
         $output = $year;
 
@@ -268,7 +271,7 @@ class CurrentYearShortcode
                 $formatted_year = substr($year, 2);
             }
 
-            $output = "$from-$formatted_year";
+            $output = esc_html($from . '-' . $formatted_year);
         }
 
         return $output;
