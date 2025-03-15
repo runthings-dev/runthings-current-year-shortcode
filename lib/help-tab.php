@@ -13,12 +13,14 @@ class HelpTab
      * 
      * @var string
      */
-    private $shortcode_tag;
+    private string $shortcode_tag;
 
     /**
      * Initialize the plugin and register hooks
+     * 
+     * @param string $shortcode_tag The shortcode tag to use in examples
      */
-    public function __construct($shortcode_tag)
+    public function __construct(string $shortcode_tag)
     {
         $this->shortcode_tag = $shortcode_tag;
 
@@ -36,8 +38,9 @@ class HelpTab
      * Enqueue admin scripts for the plugins page
      *
      * @param string $hook The current admin page
+     * @return void
      */
-    public function enqueue_admin_scripts($hook)
+    public function enqueue_admin_scripts(string $hook): void
     {
         if ($hook !== 'plugins.php') {
             return;
@@ -75,7 +78,7 @@ class HelpTab
      * @param string $plugin_file Path to the plugin file relative to the plugins directory
      * @return array Modified plugin meta array
      */
-    public function add_help_link($plugin_meta, $plugin_file)
+    public function add_help_link(array $plugin_meta, string $plugin_file): array
     {
         if (plugin_basename(__FILE__) === $plugin_file) {
             $plugin_meta[] = sprintf(
@@ -92,7 +95,7 @@ class HelpTab
      *
      * @return void
      */
-    public function add_help_tab()
+    public function add_help_tab(): void
     {
         $screen = get_current_screen();
 
@@ -113,7 +116,7 @@ class HelpTab
      *
      * @return string HTML content for the help tab
      */
-    private function get_help_content()
+    private function get_help_content(): string
     {
         $current_year = current_time('Y');
         ob_start();

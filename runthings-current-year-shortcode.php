@@ -41,23 +41,22 @@ class CurrentYearShortcode
      * The default shortcode tag
      * 
      * @var string
-     * @readonly
      */
-    private $default_tag = 'year';
+    private const DEFAULT_TAG = 'year';
 
     /**
      * The actual shortcode tag that is registered
      * 
      * @var string
      */
-    private $shortcode_tag;
+    private string $shortcode_tag;
 
     /**
      * Initialize the plugin and register hooks
      */
     public function __construct()
     {
-        $this->shortcode_tag = $this->default_tag;
+        $this->shortcode_tag = self::DEFAULT_TAG;
 
         // Register shortcode on init with low priority (20)
         // This ensures we register after most other plugins, allowing us to check for conflicts
@@ -73,10 +72,12 @@ class CurrentYearShortcode
      * 
      * If 'year' shortcode already exists, we'll use 'runthings_year' instead
      * The shortcode tag can also be filtered using 'runthings_current_year_shortcode_tag'
+     * 
+     * @return void
      */
-    public function register_shortcode()
+    public function register_shortcode(): void
     {
-        $tag = shortcode_exists($this->default_tag) ? 'runthings_year' : $this->default_tag;
+        $tag = shortcode_exists(self::DEFAULT_TAG) ? 'runthings_year' : self::DEFAULT_TAG;
 
         $this->shortcode_tag = apply_filters('runthings_current_year_shortcode_tag', $tag);
 
@@ -88,12 +89,12 @@ class CurrentYearShortcode
      *
      * @param array  $plugin_meta An array of the plugin's metadata
      * @param string $plugin_file Path to the plugin file relative to the plugins directory
-     * @return array
+     * @return array Modified plugin meta array
      */
-    public function add_active_shortcode_notice($plugin_meta, $plugin_file)
+    public function add_active_shortcode_notice(array $plugin_meta, string $plugin_file): array
     {
         if (plugin_basename(__FILE__) === $plugin_file) {
-            $is_custom = $this->shortcode_tag !== $this->default_tag;
+            $is_custom = $this->shortcode_tag !== self::DEFAULT_TAG;
             $style = $is_custom ? 'color: #dba617; font-weight: bold;' : '';
 
             $notice = sprintf(
@@ -130,10 +131,10 @@ class CurrentYearShortcode
      * // assuming current year is 2025
      * [year from="1995" mode="short"] = 1995-2025
      *
-     * @param array $atts Shortcode attributes
+     * @param array|string $atts Shortcode attributes
      * @return string The current year or year range specified
      */
-    public function render($atts)
+    public function render($atts): string
     {
         $output = '';
 
