@@ -107,8 +107,10 @@ class HelpTab
             }
         </style>
         <h3><?php esc_html_e('Current Year Shortcode Usage', 'runthings-current-year-shortcode'); ?></h3>
-        <p><?php printf(
-                esc_html__('Active shortcode: <code>[%s]</code>', 'runthings-current-year-shortcode'),
+        <p><?php
+            printf(
+                '%s <code>[%s]</code>',
+                esc_html__('Active shortcode:', 'runthings-current-year-shortcode'),
                 esc_html($this->shortcode_tag)
             ); ?></p>
 
