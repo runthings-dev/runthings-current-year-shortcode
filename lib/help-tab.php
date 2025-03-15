@@ -134,7 +134,7 @@ class HelpTab
                 esc_html($this->shortcode_tag)
             ); ?></p>
 
-        <table class="widefat" style="max-width: 600px;">
+        <table class="widefat" style="max-width: 1000px;">
             <thead>
                 <tr>
                     <th><?php esc_html_e('Example', 'runthings-current-year-shortcode'); ?></th>
