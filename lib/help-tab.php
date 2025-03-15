@@ -98,7 +98,7 @@ class HelpTab
 
     private function get_help_content()
     {
-        $current_year = date('Y');
+        $current_year = current_time('Y');
         ob_start();
 ?>
         <style>
