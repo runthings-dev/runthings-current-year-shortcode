@@ -80,7 +80,7 @@ class HelpTab
      */
     public function add_help_link(array $plugin_meta, string $plugin_file): array
     {
-        if (plugin_basename(__FILE__) === $plugin_file) {
+        if (plugin_basename(RUNTHINGS_CYS_FILE) === $plugin_file) {
             $plugin_meta[] = sprintf(
                 '<a href="#" onclick="return runthingsCYSOpenHelpTab();">%s</a>',
                 esc_html__('Usage Examples', 'runthings-current-year-shortcode')
