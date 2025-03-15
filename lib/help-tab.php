@@ -68,6 +68,13 @@ class HelpTab
         wp_add_inline_script('jquery', $script);
     }
 
+    /**
+     * Add a help link to the plugin's row in the plugins list
+     *
+     * @param array  $plugin_meta An array of the plugin's metadata
+     * @param string $plugin_file Path to the plugin file relative to the plugins directory
+     * @return array Modified plugin meta array
+     */
     public function add_help_link($plugin_meta, $plugin_file)
     {
         if (plugin_basename(__FILE__) === $plugin_file) {
@@ -80,6 +87,11 @@ class HelpTab
         return $plugin_meta;
     }
 
+    /**
+     * Add a contextual help tab on the plugins page
+     *
+     * @return void
+     */
     public function add_help_tab()
     {
         $screen = get_current_screen();
@@ -96,6 +108,11 @@ class HelpTab
         ));
     }
 
+    /**
+     * Generate the HTML content for the help tab
+     *
+     * @return string HTML content for the help tab
+     */
     private function get_help_content()
     {
         $current_year = current_time('Y');
