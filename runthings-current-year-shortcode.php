@@ -6,6 +6,11 @@ Description: Add a shortcode for displaying the current year as a range, usage: 
 Version: 1.3.0
 Author: runthingsdev
 Author URI: https://runthings.dev/
+Requires PHP: 7.4
+Requires at least: 6.0
+Tested up to: 6.8
+Text Domain: runthings-current-year-shortcode
+Domain Path: /languages
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
