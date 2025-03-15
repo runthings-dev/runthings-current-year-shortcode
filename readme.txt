@@ -102,4 +102,4 @@ Built by Matthew Harris of runthings.dev, copyright 2021-2025.
 
 Visit [runthings.dev](https://runthings.dev/) for more WordPress plugins and resources.
 
-Contribute or report issues at [GitHub repository](https://github.com/rtpHarry/CurrentYearShortcode-WordPress).
+Contribute or report issues at [GitHub repository](https://github.com/runthings-dev/runthings-current-year-shortcode).
