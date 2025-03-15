@@ -59,8 +59,12 @@ class CurrentYearShortcode
         // This ensures we register after most other plugins, allowing us to check for conflicts
         add_action('init', array($this, 'register_shortcode'), 20);
 
-        // Add notice to plugins page showing active shortcode
-        add_filter('plugin_row_meta', array($this, 'add_shortcode_notice'), 10, 2);
+        // Add notice to plugins page showing help link / active shortcode
+        add_filter('plugin_row_meta', array($this, 'add_help_link'), 10, 2);
+        add_filter('plugin_row_meta', array($this, 'add_shortcode_notice'), 20, 2);
+
+        // Add contextual help tab on plugins page
+        add_action('admin_head', array($this, 'add_help_tab'));
     }
 
     /**
@@ -76,6 +80,19 @@ class CurrentYearShortcode
         $this->shortcode_tag = apply_filters('runthings_current_year_shortcode_tag', $tag);
 
         add_shortcode($this->shortcode_tag, array($this, 'render'));
+    }
+
+    public function add_help_link($plugin_meta, $plugin_file)
+    {
+        if (plugin_basename(__FILE__) === $plugin_file) {
+            // Add help link that opens help tab via JavaScript
+            $plugin_meta[] = sprintf(
+                '<a href="#" onclick="jQuery(\'#contextual-help-link\').trigger(\'click\'); return false;">%s</a>',
+                __('Usage Examples', 'runthings-current-year-shortcode')
+            );
+        }
+
+        return $plugin_meta;
     }
 
     /**
@@ -101,6 +118,65 @@ class CurrentYearShortcode
         }
 
         return $plugin_meta;
+    }
+
+    public function add_help_tab()
+    {
+        $screen = get_current_screen();
+
+        // Only add to plugins page
+        if ($screen->id !== 'plugins') {
+            return;
+        }
+
+        $screen->add_help_tab(array(
+            'id'      => 'runthings-year-shortcode-help',
+            'title'   => __('Year Shortcode Usage', 'runthings-current-year-shortcode'),
+            'content' => $this->get_help_content(),
+        ));
+    }
+
+    private function get_help_content()
+    {
+        $current_year = date('Y');
+        ob_start();
+?>
+        <style>
+            .runthings-nowrap {
+                white-space: nowrap;
+            }
+        </style>
+        <h3><?php _e('Current Year Shortcode Usage', 'runthings-current-year-shortcode'); ?></h3>
+        <p><?php printf(__('Active shortcode: <code>[%s]</code>', 'runthings-current-year-shortcode'), $this->shortcode_tag); ?></p>
+
+        <table class="widefat" style="max-width: 600px;">
+            <thead>
+                <tr>
+                    <th><?php _e('Example', 'runthings-current-year-shortcode'); ?></th>
+                    <th><?php _e('Output', 'runthings-current-year-shortcode'); ?></th>
+                    <th><?php _e('Description', 'runthings-current-year-shortcode'); ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>[<?php echo $this->shortcode_tag; ?>]</code></td>
+                    <td class='runthings-nowrap'><?php echo $current_year; ?></td>
+                    <td><?php _e('Displays the current year', 'runthings-current-year-shortcode'); ?></td>
+                </tr>
+                <tr>
+                    <td><code>[<?php echo $this->shortcode_tag; ?> from="2020"]</code></td>
+                    <td class='runthings-nowrap'>2020-<?php echo $current_year; ?></td>
+                    <td><?php _e('Year range from 2020 to current year', 'runthings-current-year-shortcode'); ?></td>
+                </tr>
+                <tr>
+                    <td><code>[<?php echo $this->shortcode_tag; ?> from="2020" mode="short"]</code></td>
+                    <td class='runthings-nowrap'>2020-<?php echo substr($current_year, 2); ?></td>
+                    <td><?php _e('Year range with shortened end year', 'runthings-current-year-shortcode'); ?></td>
+                </tr>
+            </tbody>
+        </table>
+<?php
+        return ob_get_clean();
     }
 
     /**
