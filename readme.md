@@ -34,6 +34,28 @@ Assuming the current year is 2025:
 2. Activate the plugin through the 'Plugins' screen in WordPress.
 3. Use the `[year]` shortcode in your posts, pages, or widgets.
 
+## Filters
+
+### runthings_current_year_shortcode_tag
+
+This filter allows customization of the shortcode tag used by the plugin.
+
+#### Parameters:
+
+| Parameter | Type     | Description                                                                               |
+| --------- | -------- | ----------------------------------------------------------------------------------------- |
+| `$tag`    | `string` | The shortcode tag to be registered. Defaults to 'year' or 'runthings_year' if conflicted. |
+
+#### Usage example:
+
+```php
+add_filter('runthings_current_year_shortcode_tag', 'custom_year_shortcode_tag');
+
+function custom_year_shortcode_tag($tag) {
+    return 'my_custom_year';
+}
+```
+
 ## Frequently Asked Questions
 
 ### What if another plugin already uses the [year] shortcode?

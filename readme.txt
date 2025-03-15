@@ -95,6 +95,18 @@ When using a date range with years in the same century (e.g., 2020-2025), the 's
 = 2.0.0 =
 This update adds PHP type declarations for better code quality and updates year examples. Requires PHP 7.4 or higher.
 
+== Filters ==
+
+#### runthings_current_year_shortcode_tag
+
+This filter allows customization of the shortcode tag used by the plugin.
+
+For detailed documentation and examples, see the [full documentation on GitHub](https://github.com/runthings-dev/runthings-current-year-shortcode#filters).
+
+##### Parameters:
+
+1. **`$tag`** (`string`): The shortcode tag to be registered. Defaults to 'year' or 'runthings_year' if conflicted.
+
 == Additional Notes ==
 
 Built by Matthew Harris of runthings.dev, copyright 2021-2025.
