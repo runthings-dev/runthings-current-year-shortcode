@@ -65,6 +65,45 @@ class CurrentYearShortcode
 
         // Add contextual help tab on plugins page
         add_action('admin_head', array($this, 'add_help_tab'));
+
+        // Add JavaScript for help tab functionality on plugins page
+        add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
+    }
+
+    /**
+     * Enqueue admin scripts for the plugins page
+     *
+     * @param string $hook The current admin page
+     */
+    public function enqueue_admin_scripts($hook)
+    {
+        if ($hook !== 'plugins.php') {
+            return;
+        }
+
+        // Add inline script for help tab functionality
+        $script = '
+            function runthingsCYSOpenHelpTab() {
+                // Scroll to top
+                jQuery("html, body").animate({
+                    scrollTop: 0
+                }, 200);
+
+                // Open help panel if not already open
+                if (!jQuery("#contextual-help-wrap").is(":visible")) {
+                    jQuery("#contextual-help-link").trigger("click");
+                }
+
+                // Small delay to ensure panel is open before selecting tab
+                setTimeout(function() {
+                    jQuery("#tab-link-runthings-year-shortcode-help a").trigger("click");
+                }, 100);
+
+                return false;
+            }
+        ';
+
+        wp_add_inline_script('jquery', $script);
     }
 
     /**
@@ -85,9 +124,8 @@ class CurrentYearShortcode
     public function add_help_link($plugin_meta, $plugin_file)
     {
         if (plugin_basename(__FILE__) === $plugin_file) {
-            // Add help link that opens help tab via JavaScript
             $plugin_meta[] = sprintf(
-                '<a href="#" onclick="jQuery(\'#contextual-help-link\').trigger(\'click\'); return false;">%s</a>',
+                '<a href="#" onclick="return runthingsCYSOpenHelpTab();">%s</a>',
                 __('Usage Examples', 'runthings-current-year-shortcode')
             );
         }
