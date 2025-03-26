@@ -36,8 +36,10 @@ if (!defined('WPINC')) {
     die;
 }
 
+define('RUNTHINGS_CYS_VERSION', '2.0.0');
 define('RUNTHINGS_CYS_FILE', __FILE__);
 define('RUNTHINGS_CYS_DIR', plugin_dir_path(__FILE__));
+define('RUNTHINGS_CYS_URL', plugin_dir_url(__FILE__));
 
 require_once RUNTHINGS_CYS_DIR . 'lib/help-tab.php';
 

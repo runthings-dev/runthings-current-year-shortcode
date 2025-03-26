@@ -30,7 +30,7 @@ class HelpTab
         // Add contextual help tab on plugins page
         add_action('admin_head', array($this, 'add_help_tab'));
 
-        // Add JavaScript for help tab functionality on plugins page
+        // Add JavaScript / styles for help tab functionality on plugins page
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
     }
 
@@ -46,29 +46,22 @@ class HelpTab
             return;
         }
 
-        // Add inline script for help tab functionality
-        $script = '
-            function runthingsCYSOpenHelpTab() {
-                // Scroll to top
-                jQuery("html, body").animate({
-                    scrollTop: 0
-                }, 200);
+        // Enqueue admin styles
+        wp_enqueue_style(
+            'runthings-current-year-shortcode-admin',
+            RUNTHINGS_CYS_URL . 'assets/css/admin-styles.css',
+            [],
+            RUNTHINGS_CYS_VERSION
+        );
 
-                // Open help panel if not already open
-                if (!jQuery("#contextual-help-wrap").is(":visible")) {
-                    jQuery("#contextual-help-link").trigger("click");
-                }
-
-                // Small delay to ensure panel is open before selecting tab
-                setTimeout(function() {
-                    jQuery("#tab-link-runthings-year-shortcode-help a").trigger("click");
-                }, 100);
-
-                return false;
-            }
-        ';
-
-        wp_add_inline_script('jquery', $script);
+        // Enqueue admin script
+        wp_enqueue_script(
+            'runthings-current-year-shortcode-admin',
+            RUNTHINGS_CYS_URL . 'assets/js/admin-scripts.js',
+            ['jquery'],
+            RUNTHINGS_CYS_VERSION,
+            true
+        );
     }
 
     /**
@@ -121,11 +114,6 @@ class HelpTab
         $current_year = current_time('Y');
         ob_start();
 ?>
-        <style>
-            .runthings-nowrap {
-                white-space: nowrap;
-            }
-        </style>
         <h3><?php esc_html_e('Current Year Shortcode Usage', 'runthings-current-year-shortcode'); ?></h3>
         <p><?php
             printf(
