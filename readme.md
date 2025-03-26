@@ -87,6 +87,10 @@ When using a date range with years in the same century (e.g., 2020-2025), the 's
 
 ## Changelog
 
+### 2.1.0 - 26th March 2025
+
+- Move scripts and styles into external files
+
 ### 2.0.0 - 15th March 2025
 
 - Update year examples to 2025

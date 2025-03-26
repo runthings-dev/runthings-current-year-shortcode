@@ -66,6 +66,9 @@ When using a date range with years in the same century (e.g., 2020-2025), the 's
 
 == Changelog ==
 
+= 2.1.0 - 26th March 2025 =
+* Move scripts and styles into external files
+
 = 2.0.0 - 15th March 2025 =
 * Update year examples to 2025
 * Added fallback shortcode runthings_year if year is taken
@@ -91,6 +94,9 @@ When using a date range with years in the same century (e.g., 2020-2025), the 's
 * Internal release
 
 == Upgrade Notice ==
+
+= 2.1.0 =
+This update moves scripts and styles into externally included files.
 
 = 2.0.0 =
 This update adds PHP type declarations for better code quality and updates year examples. Requires PHP 7.4 or higher.
