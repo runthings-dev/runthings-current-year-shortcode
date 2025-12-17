@@ -8,7 +8,7 @@ Author: runthingsdev
 Author URI: https://runthings.dev/
 Requires PHP: 7.4
 Requires at least: 6.0
-Tested up to: 6.8
+Tested up to: 6.9
 Text Domain: runthings-current-year-shortcode
 Domain Path: /languages
 License: GPLv3 or later
