@@ -3,7 +3,7 @@
 Plugin Name: Current Year Shortcode
 Plugin URI: https://runthings.dev/wordpress-plugins/current-year-shortcode/
 Description: Add a shortcode for displaying the current year as a range, usage: [year from="2026"] or [runthings_year from="2026"] if there's a conflict.
-Version: 2.1.0
+Version: 2.1.1
 Author: runthingsdev
 Author URI: https://runthings.dev/
 Requires PHP: 7.4
@@ -36,7 +36,7 @@ if (!defined('WPINC')) {
     die;
 }
 
-define('RUNTHINGS_CYS_VERSION', '2.1.0');
+define('RUNTHINGS_CYS_VERSION', '2.1.1');
 define('RUNTHINGS_CYS_FILE', __FILE__);
 define('RUNTHINGS_CYS_DIR', plugin_dir_path(__FILE__));
 define('RUNTHINGS_CYS_URL', plugin_dir_url(__FILE__));

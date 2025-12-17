@@ -87,13 +87,17 @@ When using a date range with years in the same century (e.g., 2020-2026), the 's
 
 ## Changelog
 
-### 2.1.0 - 26th March 2026
+### 2.1.1 - 17th December 2025
+
+- Bump tested up to 6.9
+
+### 2.1.0 - 26th March 2025
 
 - Move scripts and styles into external files
 
-### 2.0.0 - 15th March 2026
+### 2.0.0 - 15th March 2025
 
-- Update year examples to 2026
+- Update year examples to 2025
 - Added fallback shortcode runthings_year if year is taken
 - Added `runthings_current_year_shortcode_tag` filter to customise the shortcode
 - Added contextual help tab to plugins page
