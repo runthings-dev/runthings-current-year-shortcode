@@ -2,7 +2,7 @@
 /*
 Plugin Name: Current Year Shortcode
 Plugin URI: https://runthings.dev/wordpress-plugins/current-year-shortcode/
-Description: Add a shortcode for displaying the current year as a range, usage: [year from="2025"] or [runthings_year from="2025"] if there's a conflict.
+Description: Add a shortcode for displaying the current year as a range, usage: [year from="2026"] or [runthings_year from="2026"] if there's a conflict.
 Version: 2.1.0
 Author: runthingsdev
 Author URI: https://runthings.dev/
@@ -14,7 +14,7 @@ Domain Path: /languages
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Copyright 2022-2025 Matthew Harris
+Copyright 2022-2026 Matthew Harris
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as
@@ -124,20 +124,20 @@ class CurrentYearShortcode
      * Set "mode" to "short" to abbreviate the end year when the century matches.
      *
      * @example
-     * // assuming current year is 2025
-     * [year] = 2025 (or [runthings_year] if 'year' is taken)
+     * // assuming current year is 2026
+     * [year] = 2026 (or [runthings_year] if 'year' is taken)
      * @example
-     * // assuming current year is 2025
-     * [year from="2025"] = 2025
+     * // assuming current year is 2026
+     * [year from="2026"] = 2026
      * @example
-     * // assuming current year is 2025
-     * [year from="1983"] = 1983-2025
+     * // assuming current year is 2026
+     * [year from="1983"] = 1983-2026
      * @example
-     * // assuming current year is 2025
-     * [year from="2020" mode="short"] = 2020-25
+     * // assuming current year is 2026
+     * [year from="2020" mode="short"] = 2020-26
      * @example
-     * // assuming current year is 2025
-     * [year from="1995" mode="short"] = 1995-2025
+     * // assuming current year is 2026
+     * [year from="1995" mode="short"] = 1995-2026
      *
      * @param array|string $atts Shortcode attributes
      * @return string The current year or year range specified

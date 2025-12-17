@@ -14,19 +14,19 @@ If `[year]` is used by another plugin, then it uses the fallback `[runthings_yea
 
 - Display current year with `[year]`
 - Create a dynamic year range with `[year from="2020"]`
-- Abbreviated year format with `[year from="2020" mode="short"]`, which shows "2020-25" (if the current year is 2025)
+- Abbreviated year format with `[year from="2020" mode="short"]`, which shows "2020-26" (if the current year is 2026)
 - Automatic fallback shortcode `[runthings_year]` if another plugin already uses the 'year' shortcode
 - Filter (`runthings_current_year_shortcode_tag`) to set your own shortcode
 
 ### Usage Examples
 
-Assuming the current year is 2025:
+Assuming the current year is 2026:
 
-- `[year]` displays "2025"
-- `[year from="2025"]` displays "2025" (since it's the current year)
-- `[year from="1983"]` displays "1983-2025"
-- `[year from="2020" mode="short"]` displays "2020-25" (shortened current year)
-- `[year from="1995" mode="short"]` displays "1995-2025" (not shortened because centuries differ)
+- `[year]` displays "2026"
+- `[year from="2026"]` displays "2026" (since it's the current year)
+- `[year from="1983"]` displays "1983-2026"
+- `[year from="2020" mode="short"]` displays "2020-26" (shortened current year)
+- `[year from="1995" mode="short"]` displays "1995-2026" (not shortened because centuries differ)
 
 ## Installation
 
@@ -72,7 +72,7 @@ Yes! This shortcode works perfectly in footer widgets, custom footer code, or an
 
 ### What's the 'mode=short' parameter for?
 
-When using a date range with years in the same century (e.g., 2020-2025), the 'short' mode will abbreviate the end year to just the last digits (2020-25), creating a cleaner look for your copyright statements.
+When using a date range with years in the same century (e.g., 2020-2026), the 'short' mode will abbreviate the end year to just the last digits (2020-26), creating a cleaner look for your copyright statements.
 
 ## Screenshots
 
@@ -87,13 +87,13 @@ When using a date range with years in the same century (e.g., 2020-2025), the 's
 
 ## Changelog
 
-### 2.1.0 - 26th March 2025
+### 2.1.0 - 26th March 2026
 
 - Move scripts and styles into external files
 
-### 2.0.0 - 15th March 2025
+### 2.0.0 - 15th March 2026
 
-- Update year examples to 2025
+- Update year examples to 2026
 - Added fallback shortcode runthings_year if year is taken
 - Added `runthings_current_year_shortcode_tag` filter to customise the shortcode
 - Added contextual help tab to plugins page
@@ -122,7 +122,7 @@ When using a date range with years in the same century (e.g., 2020-2025), the 's
 
 ## Additional Notes
 
-Built by Matthew Harris of runthings.dev, copyright 2021-2025.
+Built by Matthew Harris of runthings.dev, copyright 2021-2026.
 
 Visit [runthings.dev](https://runthings.dev/) for more WordPress plugins and resources.
 
