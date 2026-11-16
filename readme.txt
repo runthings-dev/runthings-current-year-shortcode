@@ -1,7 +1,7 @@
 === Current Year Shortcode ===
 Contributors: runthingsdev
 Tags: shortcode, year, copyright, date, dynamic-content
-Tested up to: 6.9
+Tested up to: 7.1
 Requires at least: 6.0
 Requires PHP: 7.4
 Stable tag: 2.1.1
