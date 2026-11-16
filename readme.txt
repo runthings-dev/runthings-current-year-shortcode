@@ -4,7 +4,7 @@ Tags: shortcode, year, copyright, date, dynamic-content
 Tested up to: 7.1
 Requires at least: 6.0
 Requires PHP: 7.4
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -66,6 +66,9 @@ When using a date range with years in the same century (e.g., 2020-2026), the 's
 
 == Changelog ==
 
+= 2.1.2 - 16th November 2026 =
+* Update WordPress tested-up-to metadata to 7.1.
+
 = 2.1.1 - 17th December 2025 =
 * Update year examples to 2026
 * Bump tested up to 6.9
@@ -99,14 +102,14 @@ When using a date range with years in the same century (e.g., 2020-2026), the 's
 
 == Upgrade Notice ==
 
+= 2.1.2 =
+Updates WordPress tested-up-to metadata to 7.1.
+
 = 2.1.1 =
 Bump tested up to 6.9. Update year examples to 2026.
 
 = 2.1.0 =
 This update moves scripts and styles into externally included files.
-
-= 2.0.0 =
-This update adds PHP type declarations for better code quality and updates year examples. Requires PHP 7.4 or higher.
 
 == Filters ==
 

@@ -87,6 +87,10 @@ When using a date range with years in the same century (e.g., 2020-2026), the 's
 
 ## Changelog
 
+### 2.1.2 - 16th November 2026
+
+- Update WordPress tested-up-to metadata to 7.1.
+
 ### 2.1.1 - 17th December 2025
 
 - Update year examples to 2026
