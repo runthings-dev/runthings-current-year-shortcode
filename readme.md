@@ -77,13 +77,13 @@ When using a date range with years in the same century (e.g., 2020-2026), the 's
 ## Screenshots
 
 1. Using the shortcode in a footer widget
-   ![Using the shortcode in a footer widget](screenshot-1.png)
+   ![Using the shortcode in a footer widget](.wordpress-org/screenshot-1.png)
 
 2. Plugin info showing the active shortcode
-   ![Plugin info showing the active shortcode](screenshot-2.png)
+   ![Plugin info showing the active shortcode](.wordpress-org/screenshot-2.png)
 
 3. Help tab with usage examples
-   ![Help tab with usage examples](screenshot-3.png)
+   ![Help tab with usage examples](.wordpress-org/screenshot-3.png)
 
 ## Changelog
 
